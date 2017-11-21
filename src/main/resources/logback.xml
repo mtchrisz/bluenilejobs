@@ -1,0 +1,18 @@
+<configuration>
+  <!-- This listener will cause System.out messages to be printed to the console. -->
+  <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+  <!-- This class helps get log levels right if the application uses any libraries that write to JUL -->
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS Z}]:[%X{RequesterId}]:[%X{RequestId}]:[%t]:[%p]:[%c] - %m%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- logLevel can be overriden with -DlogLevel=info|debug etc. -->
+  <root level="${logLevel:-INFO}">
+    <appender-ref ref="console"/>
+  </root>
+</configuration>
